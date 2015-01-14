@@ -8,16 +8,6 @@ class Term
   define_method(:word) do
     @word
   end
-  define_singleton_method(:search) do |second_term|
-    found_word = nil
-    @@term_list.each() do |word|
-      if word.id().eql?(second_term.to_i())
-        found_word = word
-      end
-    end
-    found_word
-
-  end
   define_method(:definition) do
     @definition
   end
@@ -30,11 +20,21 @@ class Term
   define_method(:id) do
     @id
   end
+  define_singleton_method(:search) do |search_word|
+       found_definition = nil
+    @@term_list.each() do |word|
+      if word.word() == search_word
+        found_definition = word
+      end
+    end
+    found_definition
+  end
   define_singleton_method(:find) do |definition|
     found_word = nil
     @@term_list.each() do |word|
      if word.id().eql?(definition.to_i())
         found_word = word
+
       end
     end
     found_word

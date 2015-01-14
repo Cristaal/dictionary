@@ -1,9 +1,10 @@
 require ('rspec')
 require ('dictionary')
 require ('pry')
+require ('word')
+require ('definition')
 
 describe(Term) do
-
   describe("#word") do
     it("returns the word we want to define") do
       test_word = Term.new("elephants", "large mammals")
@@ -47,12 +48,12 @@ describe(Term) do
     end
   end
   describe(".search") do
-    it("able to type word to search and return the definitions") do
-      test_word = Term.new("spring", ["season", "jump"])
-      test_word.save()
-      test_word1 = Term.new(["envierno", "winter"], "cold")
-      test_word1.save()
-      expect(Term.search("spring").to(eq(test_word))
+    it ("is able to search for a term and find an object") do
+    test_word = Term.new("nut", ["food", "nutty"])
+    test_word.save()
+    test_word1 = Term.new(["blue", "azul"], "empty")
+    test_word1.save()
+    expect(Term.search("nut")).to(eq(test_word))
     end
   end
 end
