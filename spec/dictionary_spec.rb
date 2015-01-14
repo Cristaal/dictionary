@@ -10,11 +10,19 @@ describe(Term) do
       #test_word.save()
       expect(test_word.word()).to(eq("elephants"))
     end
+    it("returns multiple words with the same definition") do
+      test_word = Term.new(["flower", "flor"], ["plant", "green"])
+      expect(test_word.word()).to(eq(["flower", "flor"]))
+    end
   end
   describe('#definition') do
     it("returns the definition of the word") do
       test_word = Term.new("elephants", "large")
       expect(test_word.definition()).to(eq("large"))
+    end
+    it("returns all definitions of a word") do
+      test_word = Term.new("flower", ["plant", "to bloom"])
+      expect(test_word.definition()).to(eq(["plant", "to bloom"]))
     end
   end
   describe(".all") do
@@ -36,6 +44,15 @@ describe(Term) do
        test_word_1 = Term.new("spinach", "leafy vegetable")
        test_word_1.save()
        expect(Term.find(test_word.id())).to(eq(test_word))
+    end
+  end
+  describe(".search") do
+    it("able to type word to search and return the definitions") do
+      test_word = Term.new("spring", ["season", "jump"])
+      test_word.save()
+      test_word1 = Term.new(["envierno", "winter"], "cold")
+      test_word1.save()
+      expect(Term.search("spring").to(eq(test_word))
     end
   end
 end
