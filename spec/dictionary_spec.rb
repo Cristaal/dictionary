@@ -12,8 +12,8 @@ describe(Term) do
       expect(test_word.word()).to(eq("elephants"))
     end
     it("returns multiple words with the same definition") do
-      test_word = Term.new(["flower", "flor"], ["plant", "green"])
-      expect(test_word.word()).to(eq(["flower", "flor"]))
+      test_word = Term.new("flower, flor", "plant, green")
+      expect(test_word.word()).to(eq("flower, flor"))
     end
   end
   describe('#definition') do
@@ -21,9 +21,10 @@ describe(Term) do
       test_word = Term.new("elephants", "large")
       expect(test_word.definition()).to(eq("large"))
     end
+
     it("returns all definitions of a word") do
-      test_word = Term.new("flower", ["plant", "to bloom"])
-      expect(test_word.definition()).to(eq(["plant", "to bloom"]))
+      test_word = Term.new("flower", "plant, to bloom")
+      expect(test_word.definition()).to(eq("plant, to bloom"))
     end
   end
   describe(".all") do
@@ -49,9 +50,9 @@ describe(Term) do
   end
   describe(".search") do
     it ("is able to search for a term and find an object") do
-    test_word = Term.new("nut", ["food", "nutty"])
+    test_word = Term.new("nut", "food, nutty")
     test_word.save()
-    test_word1 = Term.new(["blue", "azul"], "empty")
+    test_word1 = Term.new("blue, azul", "empty")
     test_word1.save()
     expect(Term.search("nut")).to(eq(test_word))
     end

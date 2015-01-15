@@ -1,15 +1,15 @@
 class Term
   @@term_list = []
   define_method(:initialize) do |word, definition|
-    @word = word
-    @definition = definition
+    @word = [word]
+    @definition = [definition]
     @id = @@term_list.length().+(1)
   end
   define_method(:word) do
-    @word
+    @word.join()
   end
   define_method(:definition) do
-    @definition
+    @definition.join()
   end
   define_singleton_method(:all) do
     @@term_list
