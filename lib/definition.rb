@@ -9,4 +9,7 @@ class Definition
   define_method(:language) do
     @language.join()
   end
+  define_method(:saved) do
+    self.save()
+  end
 end
